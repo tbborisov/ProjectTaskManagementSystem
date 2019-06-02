@@ -1,0 +1,72 @@
+<h1>Publications</h1>
+
+<form [formGroup]="publicationForm" (ngSubmit)="onFormSubmit()">
+  <div>
+    Title:<input formControlName="title"  placeholder="Enter title">
+  </div>
+  <div>
+    Author:<input formControlName="author"  placeholder="Enter author">
+  </div>
+  <div>
+    Description:<input formControlName="description"  placeholder="Enter description">
+  </div>
+  <div>
+    Tags: <input formControlName="tags"  placeholder="Enter tags">
+  </div>
+  <div>
+    ImageURL: <input formControlName="imageURL"  placeholder="Enter image URL">
+  </div>
+  <div>
+      <input type="radio" formControlName="status" value="ACTIVE" checked> Active<br>
+      <input type="radio" formControlName="status" value="INACTIVE"> Inactive<br>
+  </div>
+  <button type="submit">Submit</button> 
+</form> 
+
+<h2>
+    Current Publications:
+</h2>
+<div *ngIf="publications && publications.length > 0">
+  <ul>
+    <li *ngFor="let publication of publications; let idx = index">
+      {{publication.title}} 
+      {{publication.author}}
+      {{publication.description}}
+      {{publication.publicationDate}}
+      {{publication.tags}}
+      {{publication.imageURL}}
+      {{publication.status}}
+      <span>
+          <button (click)="update(publication)"> Update </button>
+        </span>
+        <span>
+          <button (click)="deleteElemWithIndex(publication)"> Delete </button>
+        </span>
+
+        <div *ngIf="publication.toUpdate">
+            <form [formGroup]="updatePublicationForm" (ngSubmit)="onUpdateFormSubmit(publication)">
+                <div>
+                  Title:<input formControlName="title"  placeholder="Enter title">
+                </div>
+                <div>
+                  Author:<input formControlName="author"  placeholder="Enter author">
+                </div>
+                <div>
+                  Description:<input formControlName="description"  placeholder="Enter description">
+                </div>
+                <div>
+                  Tags: <input formControlName="tags"  placeholder="Enter tags">
+                </div>
+                <div>
+                  ImageURL: <input formControlName="imageURL"  placeholder="Enter image URL">
+                </div>
+                <div>
+                    <input type="radio" formControlName="status" value="ACTIVE" checked> Active<br>
+                    <input type="radio" formControlName="status" value="INACTIVE"> Inactive<br>
+                </div>
+                <button type="submit">Submit</button> 
+              </form> 
+        </div>
+    </li>
+  </ul> 
+</div>
