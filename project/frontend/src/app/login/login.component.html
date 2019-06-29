@@ -1,0 +1,42 @@
+<h1 class="headerLogin">Login</h1>
+
+<div class="contentLogin">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+    
+    <div [@loginFallthrough]="" >
+      <div *ngIf="true"> 
+        <span class="firstinputField" >
+          <label for="usName"><h4>Username</h4> 
+            <input formControlName="username" id="usName" type="text" pInputText #in1 (keyup)="onKeyUser(in1.value)"> 
+          </label>
+        </span>
+
+        <span class="secondInputField">
+          <label for="pass"><h4>Password</h4>
+            <input formControlName="password" id="pass" type="password" pInputText #in2 (keyup)="onKeyPass(in2.value)"> 
+          </label>
+        </span> 
+        
+      </div>
+    </div>
+    
+    <br><br>
+    
+    <div [@buttonLoginFallthrough]="" >
+      <div *ngIf="true"> 
+        <nav>
+          <button pButton (click)="onSubmit($event)" type="button" icon="pi pi-check" label="Login" [disabled]="!loginForm.valid"></button>
+        </nav>
+      </div>
+    </div>
+
+    <br>
+    
+    <div *ngIf="showError()" >
+      <font color="red">
+        *Wrong credentials. Please try again.
+      </font>
+    </div>
+
+  </form>
+</div>

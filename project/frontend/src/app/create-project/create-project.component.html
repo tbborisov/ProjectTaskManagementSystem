@@ -1,0 +1,41 @@
+<div class="createProjectHeader">
+<h1>Create project</h1>
+</div>
+
+<div class="createProjectContent">
+<form  [formGroup]="projectForm" (ngSubmit)="onSubmit()" *ngIf="isadmin">
+<div [@createProjectFallthrough]="">
+    <div *ngIf="true">
+        <label for="projectKeyCrProject"><h4>Project key</h4> 
+          <input  formControlName="projectKey" id="projectKeyCrProject" type="text" #inCrPrK (keyup)="onKeyProjectKey(inCrPrK.value)" > 
+        </label>
+      
+          <label for="projectTitleCrProject"><h4>Project title</h4> 
+            <input formControlName="projectTitle" id="projectTitleCrProject" type="text" #inCrPrT (keyup)="onKeyProjectTitle(inCrPrT.value)"> 
+          </label>
+      </div>
+</div>
+</form>
+
+<h1 *ngIf="!isadmin">
+    <br>
+    <font color="red">
+        You have no permissions to do this!
+      </font>
+</h1> 
+    
+        <br><br>
+        
+      <div [@buttonCreateProjectFallthrough]="">  
+        <div *ngIf="true">
+        <a routerLink="/newProjectLayout" >
+          <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+        </a>
+        <a  *ngIf="isadmin">
+          <button pButton type="button" icon="pi pi-check" label="Submit" [disabled]="!projectForm.valid" (click)="onSubmit()"></button>
+        </a>
+        </div>
+      </div>
+
+    </div>
+

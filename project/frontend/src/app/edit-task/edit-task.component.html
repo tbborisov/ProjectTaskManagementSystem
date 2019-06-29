@@ -1,0 +1,87 @@
+<div class="editTaskHeader">
+  <h1>{{ label }}</h1>
+</div>
+
+<div class="editTaskContent">
+<form  [formGroup]="taskEditForm" (ngSubmit)="onSubmit()">
+  
+  <div [@editTaskFallthrough]>
+    <div *ngIf="true">
+    <span>
+        <label for="taskProgressEditTask"><h4>Task progress</h4> 
+          <input formControlName="taskProgress" id="taskProgressEditTask" type="text" placeholder="pattern: _%" #inEdTP (keyup)="onKeyTaskProgress(inEdTP.value)"> 
+        </label>
+    </span>
+
+    <div *ngIf="taskEditForm.get('taskProgress').dirty && checkTaskProgress()">
+      <font color="red">
+        *Invalid task progress input. Please try again.
+      </font>
+    </div>
+
+<!--
+    <span>
+        <label for="taskStatusEditTask"><h4>Task status</h4> 
+          <input formControlName="taskStatus" id="taskStatusEditTask" type="text" placeholder="pattern: D(Done) I(In progree) O(Opened) R(Reopened)"
+                      #inEdTS (keyup)="onKeyTaskStatus(inEdTS.value)"> 
+        </label>
+    </span>
+
+    <div *ngIf="taskEditForm.get('taskStatus').dirty && checkTaskStatus()" >
+      <font color="red">
+        *Invalid task status input. Please try again.
+      </font>
+    </div>
+
+    -->
+
+    <!-- <span>
+        <label for="remainingTimeEditTask"><h4>Remaining time</h4> 
+          <input formControlName="remainingTime" id="remainingTimeEditTask" type="number" #inEdRT (keyup)="onKeyRemainingTime(inEdRT.value)"> 
+        </label>
+    </span> -->
+
+    <span>
+        <label for="hoursSpentEditTask"><h4>Hours spent</h4> 
+          <input formControlName="hoursSpent" id="hoursSpentEditTask" type="number" #inEdHS (keyup)="onKeyHoursSpent(inEdHS.value)"> 
+        </label>
+    </span>
+
+    <span>
+        <label for="commentsEditTask"><h4>Comments</h4> 
+          <input formControlName="comments" id="commentsEditTask" type="text" #inEdC (keyup)="onKeyComments(inEdC.value)"> 
+        </label>
+    </span>
+    </div>
+  </div>
+</form>
+
+
+  <div  [@editTaskFallthrough]="">
+      <div *ngIf="true">
+      <label  for="statusCrTask"><h4>Status</h4> 
+        <p-radioButton class="radio" name="status" value="D" label="Done" [(ngModel)]="selectedValue"></p-radioButton> 
+        <p-radioButton class="radio" name="status" value="I" label="In progress" [(ngModel)]="selectedValue"></p-radioButton>
+        <p-radioButton class="radio" name="status" value="O" label="Open" [(ngModel)]="selectedValue"></p-radioButton>
+        <p-radioButton class="radio" name="status" value="R" label="Reopened" [(ngModel)]="selectedValue"></p-radioButton>
+      </label>
+    </div>
+    </div>
+      
+  <br><br>
+  
+      <div [@buttonEditTaskFallthrough]>
+        <div *ngIf="true">
+          <a routerLink="/newTaskLayout">
+            <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+          </a>
+          <a>
+            <button pButton type="button" icon="pi pi-check" label="Submit" 
+                      [disabled]="!taskEditForm.valid" (click)="onSubmit($event)"></button>
+          </a>
+        </div>
+      </div>
+
+</div>
+
+<br><br>

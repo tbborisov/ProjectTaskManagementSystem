@@ -1,0 +1,37 @@
+<div class="editProjectHeader">
+  <h1>{{ label }}</h1>
+</div>
+
+<div class="editProjectContent">
+<form  [formGroup]="projectEditForm" (ngSubmit)="onSubmit()">
+    <div [@editProjectFallthrough]="">
+      <div *ngIf="true">
+        <div>
+          <label for="projectKeyEditProject"><h4>Project key</h4> 
+            <input  formControlName="projectKey" id="projectKeyEditProject" type="text" #inEdPrK (keyup)="onKeyProjectKey(inEdPrK.value)" > 
+          </label>
+        </div>
+
+        <div>
+          <label for="projectTitleEditProject"><h4>Project title</h4> 
+            <input formControlName="projectTitle" id="projectTitleEditProject" type="text" #inEdPrT (keyup)="onKeyProjectTitle(inEdPrT.value)"> 
+          </label>
+        </div>
+      </div>
+    </div>
+        
+    <br><br>
+        
+    <div [@buttonEditProjectFallthrough]="">
+      <div *ngIf="true">
+        <a routerLink="/newProjectLayout">
+          <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+        </a>
+        <a>
+          <button pButton type="button" icon="pi pi-check" label="Submit" 
+                    [disabled]="!projectEditForm.valid" (click)="onSubmit($event)"></button>
+        </a>
+      </div>
+    </div>
+</form>
+</div>

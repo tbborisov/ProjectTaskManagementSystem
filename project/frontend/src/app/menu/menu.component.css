@@ -1,0 +1,22 @@
+h1{
+    color:#376fcc;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.headerMenu{
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+    background: #252830;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    width:100%; 
+    margin-top: 0px;
+    padding-left: 10px;
+    margin-left: 0;
+}
+
+.contentMenu{
+    padding-top: 100px;
+    position: relative;
+}

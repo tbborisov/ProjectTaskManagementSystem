@@ -1,0 +1,76 @@
+<div class="editUserHeader">
+  <h1>{{ label }}</h1>
+</div>
+
+<div class="editUserContent">
+<form  [formGroup]="editUserForm" (ngSubmit)="onSubmit()" >
+  <div [@editUserFallthrough]="">
+    <div *ngIf="true">
+        <div>
+            <label for="fullNameEditUser"><h4>Full name</h4> 
+              <input formControlName="fullName" id="fullNameEditUser" type="text" #inEdFN (keyup)="onKeyFullname(inEdFN.value)"> 
+            </label>
+          </div>
+
+      <div>
+        <label for="passEditUser"><h4>Password</h4> 
+          <input formControlName="password" id="passEditUser" type="password" #inEdPass (keyup)="onKeyPassword(inEdPass.value)"> 
+        </label>
+      </div>
+
+      <div  [@editUserFallthrough]="">
+          <div *ngIf="true">
+        <label for="passConfEdUser"><h4>Confirm password</h4> 
+          <input formControlName="confirmPassword" id="passConfEdUser" type="password" #inEdConfPass (keyup)="onKeyConfirmPassword(inEdConfPass.value)"> 
+        </label>
+        </div>
+      </div>
+
+      <div *ngIf="editUserForm.get('password').dirty && editUserForm.get('confirmPassword').dirty && checkPasswords()" >
+          <font color="red">
+            *Passwords don't match. Please input same passwords.
+          </font>
+        </div>
+
+      <!--
+      <div>
+        <label for="roleEditUser"><h4>Role</h4> 
+          <input formControlName="role" id="roleEditUser" type="text" placeholder="A(for Admin) or U(for User)" 
+                  #inEdRole (keyup)="onKeyRole(inEdRole.value)"> 
+        </label>
+      </div>
+
+      <div *ngIf="editUserForm.get('role').dirty && checkRole()" >
+        <font color="red">
+          *Invalid role. Please try again.
+        </font>
+      </div>
+    -->
+    </div>
+  </div>
+</form>
+
+  <div  [@editUserFallthrough]="">
+      <div *ngIf="true">
+      <label  for="roleCrUser"><h4>Role</h4> 
+        <p-radioButton class="radio" name="roleG" value="A" label="Admin" [(ngModel)]="selectedValue"></p-radioButton> 
+        <p-radioButton class="radio" name="roleG" value="U" label="User" [(ngModel)]="selectedValue"></p-radioButton>
+      </label>
+    </div>
+    </div>
+
+    <br><br>
+    
+  <div [@buttonEditUserFallthrough]="">
+    <div *ngIf="true">
+      <a routerLink="/newUserLayout">
+        <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+      </a>
+      <a>
+        <button pButton type="button" icon="pi pi-check" label="Submit" 
+                  [disabled]="!editUserForm.valid || (editUserForm.valid && checkPasswords())" (click)="onSubmit($event)"></button>
+      </a>
+    </div>
+  </div>
+
+</div>

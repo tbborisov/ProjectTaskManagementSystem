@@ -1,0 +1,87 @@
+<div *ngIf="dataLoaded">
+  <div class="newTaskMeetingLayoutHeader">
+    <h1>{{ label }}</h1>
+  </div>
+
+  <!--
+  <div class="dataNewUserLayout">
+    <p-toggleButton onIcon="pi pi-user-plus" offIcon="pi pi-user-plus" [style]="{'width':'150px'}" (onChange)="handleChange('create')" class="toggleButtons" onLabel="Create" offLabel="Create" [(ngModel)]="createCheck"  [disabled]="createCheck || pickUser"></p-toggleButton>
+    <p-toggleButton onIcon="pi pi-pencil" offIcon="pi pi-pencil" [style]="{'width':'150px'}" (onChange)="handleChange('edit')" class="toggleButtons" onLabel="Edit" offLabel="Edit" [(ngModel)]="editCheck" [disabled]="!pickUser || editCheck"></p-toggleButton>
+    <p-toggleButton onIcon="pi pi-trash" offIcon="pi pi-trash" [style]="{'width':'150px'}" (onChange)="handleChange('delete')" class="toggleButtons" onLabel="Delete" offLabel="Delete" [(ngModel)]="deleteCheck" [disabled]="!pickUser || deleteCheck"></p-toggleButton>
+  </div>
+ 
+
+  <div class="dataNewProjectLayout" >
+      <p-button label="Create"  (onClick)="confirm('create')" class="toggleButtons" icon="pi pi-user-plus" ></p-button>
+      <p-button label="Edit"  (onClick)="confirm('edit')" class="toggleButtons" icon="pi pi-pencil" [disabled]="!pickedProject" ></p-button>
+      <p-button label="Delete"  (onClick)="confirm('delete')" class="toggleButtons" icon="pi pi-trash" [disabled]="!pickedProject"></p-button>
+  </div>
+   -->
+
+<!--
+  <div>
+    <h3>Current User Records</h3>
+      <div class="p-grid p-dir-col">
+        <div class="p-col">
+            <div class="box">1</div>
+        </div>
+        <div class="p-col">
+            <div class="box">2</div>
+        </div>
+        <div class="p-col">
+            <div class="box">3</div>
+        </div>
+      </div>
+  </div>
+
+  <h1>Current user records</h1>
+
+  <div>
+    <div *ngIf="dataLoaded">
+      <div *ngIf="isadmin">
+        <div class="newUserLayoutList">
+          <ul  [@newUserLayoutFallthrough]="users$">
+            <li *ngFor="let user of users$; let i = index" [ngClass]="clicked === i ? 'active' : 'inactive'" (click)="select(i, user.username)">
+              <a>{{user.username}} ~ {{user.fullName}} ~ {{user.role}}</a> 
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  -->
+
+  <table mat-table [dataSource]="meetings$" class="table" *ngIf="dataLoaded" [@newTaskMeetingLayoutFallthrough]="">
+    <ng-container matColumnDef="MEETING KEY">
+      <mat-header-cell *matHeaderCellDef class="colNames"> MEETING KEY </mat-header-cell> 
+      <mat-cell *matCellDef="let meeting"> {{meeting.meetingKey}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="MEETING DATE">
+      <mat-header-cell *matHeaderCellDef class="colNames"> MEETING DATE </mat-header-cell>
+      <mat-cell *matCellDef="let meeting"> {{meeting.meetingDate}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; let i = index; columns: displayedColumns;" [ngClass]="clicked === i ? 'active' : 'inactive'" (click)="select(i, row.meetingKey)"></mat-row>
+
+  </table>
+
+
+  <div>
+    <div class="back" [@newTaskMeetingLayoutFallthrough]="">
+      <div *ngIf="true">
+        <a class="conf" routerLink="/newTaskProjectLayout">
+          <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+        </a>
+        <a class="conf">
+          <button routerLink="/newTaskLayout" pButton type="button" icon="pi pi-angle-right" label="Proceed" [disabled]="!proceed"></button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="425"></p-confirmDialog>
+
+

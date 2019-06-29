@@ -1,0 +1,37 @@
+h1{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #376fcc;
+}
+
+h4{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+input {
+    width: 40%;
+    padding: 7px 16px;
+    border-radius:5px;
+    border-color: #376fcc;
+}
+
+a{
+    margin: 5px;
+}
+
+.createProjectHeader{
+    position: fixed;
+    top: 0px;
+    z-index: 2;
+    background: #252830;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    width:100%; 
+    margin-top: 0px;
+    padding-left: 10px;
+}
+
+.createProjectContent{
+    padding-top: 85px;
+    position: relative;
+    padding-left: 10px;
+}

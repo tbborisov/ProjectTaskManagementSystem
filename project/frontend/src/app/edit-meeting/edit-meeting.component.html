@@ -1,0 +1,41 @@
+<div class="editMeetingHeader">
+  <h1>{{ label }}</h1>
+</div>
+
+<div class="editMeetingContent">
+<form  [formGroup]="meetingEditForm" (ngSubmit)="onSubmit()" class="form">
+  <!--  
+  <div [@editMeetingFallthrough]>
+      <div *ngIf="true">
+        <span>
+          <label for="dateEditMeeting"><h4>Meeting date</h4> 
+            <input formControlName="meetingDate" id="dateEditMeeting" type="text" placeholder="pattern: dd/MM/yyyy hh:mm"> 
+          </label>
+        </span>
+      </div>
+    </div>  
+  -->
+
+  <div [@editMeetingFallthrough]>
+    <div class="ui-g-12 ui-md-4" *ngIf="true">
+      <h4>Meeting date</h4>
+      <p-calendar formControlName="meetingDate" dateFormat="dd/mm/yy" [showTime]="true"  #edMD (onSelect)="onKeyMeetingDate(edMD.value)"></p-calendar>
+    </div>
+  </div>
+</form>
+
+    <div [@buttonEditMeetingFallthrough] class="buttons"> 
+      <div *ngIf="true">
+        <a routerLink="/newMeetingLayout">
+          <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+        </a>
+        <a>
+          <button pButton type="button" icon="pi pi-check" label="Submit"
+                    [disabled]="!meetingEditForm.valid" (click)="onSubmit()" ></button>
+        </a>
+      </div>
+    </div>
+
+</div>
+
+<br><br>

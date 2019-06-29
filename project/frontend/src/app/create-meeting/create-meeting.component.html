@@ -1,0 +1,36 @@
+<div class="createMeetingHeader">
+  <h1>{{ label }}</h1>
+</div>
+
+<div class="createMeetingContent">
+<form  [formGroup]="meetingForm" (ngSubmit)="onSubmit()" class="form">
+<!--
+      <span class="firstInputFieldCreateMeeting" [@createMeetingFallthrough]="">
+        <div *ngIf="true">
+          <label for="dateCrMeeting"><h4>Meeting date</h4> 
+            <input formControlName="meetingDate" id="dateCrMeeting" type="text" placeholder="pattern: dd/MM/yyyy hh:mm">  
+          </label>
+          </div>
+        </span>
+
+      -->
+    <div [@createMeetingFallthrough]>
+      <div class="ui-g-12 ui-md-4" *ngIf="true">
+        <h4>Meeting date</h4>
+        <p-calendar formControlName="meetingDate" dateFormat="dd/mm/yy" [showTime]="true" #crMD (onSelect)="onKeyMeetingDate(crMD.value)"></p-calendar>
+      </div>
+    </div>
+
+  </form>
+      
+    <div class="buttons">
+        <a routerLink="/newMeetingLayout" [@buttonCreateMeetingFallthrough]="">
+          <button *ngIf="true" pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+        </a>
+        <a  [@buttonCreateMeetingFallthrough]="">
+          <button *ngIf="true" pButton type="button" icon="pi pi-check" label="Submit" 
+                    [disabled]="!meetingForm.valid" (click)="onSubmit()"></button>
+        </a>
+        </div>
+
+</div>

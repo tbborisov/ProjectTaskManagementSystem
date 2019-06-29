@@ -1,0 +1,91 @@
+<div class="createUserHeader">
+  <h1>Create user</h1>
+</div>
+
+<div class="createUserContent">
+<form  [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="isadmin">
+
+    <div  [@createUserFallthrough]="">
+        <div *ngIf="true">
+      <label for="fullNameCrUser"><h4>Full name</h4> 
+        <input formControlName="fullName" id="fullNameCrUser" type="text" #inCrFN (keyup)="onKeyFullName(inCrFN.value)"> 
+      </label>
+      </div>
+    </div>
+
+    <div [@createUserFallthrough]="">
+      <div *ngIf="true">
+      <label for="usNameCrUser"><h4>Username</h4> 
+        <input  formControlName="username" id="usNameCrUser" name="usNameCrUser" type="text" #inCrUs (keyup)="onKeyUserName(inCrUs.value)"> 
+      </label>
+    </div>
+    </div>
+
+    <div  [@createUserFallthrough]="">
+        <div *ngIf="true">
+      <label for="passCrUser"><h4>Password</h4> 
+        <input formControlName="password" id="passCrUser" type="password" #inCrPass (keyup)="onKeyPassword(inCrPass.value)"> 
+      </label>
+      </div>
+    </div>
+
+    <div  [@createUserFallthrough]="">
+      <div *ngIf="true">
+    <label for="passConfCrUser"><h4>Confirm password</h4> 
+      <input formControlName="confirmPassword" id="passConfCrUser" type="password" #inCrConfPass (keyup)="onKeyConfirmPassword(inCrConfPass.value)"> 
+    </label>
+    </div>
+  </div>
+
+  <div *ngIf="userForm.get('password').dirty && userForm.get('confirmPassword').dirty && checkPasswords()" >
+    <font color="red">
+      *Passwords don't match. Please input same passwords.
+    </font>
+  </div>
+
+    <!--
+    <div [@createUserFallthrough]="">
+      <div *ngIf="true">
+      <label  for="roleCrUser"><h4>Role</h4> 
+        <input formControlName="role" id="roleCrUser" type="text" placeholder="A(for Admin) or U(for User)" #inCrRole (keyup)="onKeyRole(inCrRole.value)"> 
+      </label>
+    </div>
+    </div>
+
+    <div *ngIf="userForm.get('role').dirty && checkRole()" >
+      <font color="red">
+        *Invalid role. Please try again.
+      </font>
+    </div>
+
+    -->
+  </form>
+
+  <div  [@createUserFallthrough]="">
+    <div *ngIf="true">
+    <label  for="roleCrUser"><h4>Role</h4> 
+      <p-radioButton class="radio" name="roleG" value="A" label="Admin" [(ngModel)]="selectedValue"></p-radioButton> 
+      <p-radioButton class="radio" name="roleG" value="U" label="User" [(ngModel)]="selectedValue"></p-radioButton>
+    </label>
+  </div>
+  </div>
+    
+    <h1 *ngIf="!isadmin">
+        <font color="red">
+            You have no permissions to do this!
+          </font>
+    </h1> 
+
+    <br><br>
+
+    <a routerLink="/newUserLayout" [@buttonCreateUserFallthrough]="">
+      <button *ngIf="true" pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+    </a>
+    
+    <a [@buttonCreateUserFallthrough]="" *ngIf="isadmin">
+        <button (click)="onSubmit($event)" *ngIf="true" pButton type="button" icon="pi pi-check" label="Submit" 
+                  [disabled]="!userForm.valid || (userForm.valid && checkPasswords())"></button>
+    </a>
+</div>
+ 
+

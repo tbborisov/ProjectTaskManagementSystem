@@ -1,0 +1,98 @@
+<h1 class="header">{{ label }}</h1>
+
+<div class="content">
+<form  [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  
+  <div [@createTaskFallthrough]>
+    <div *ngIf="true">
+      <span class="firstInputFieldCreateTask">
+        <label for="taskKeyCrTask"><h4>Task key</h4> 
+          <input formControlName="taskKey" id="taskKeyCrTask" type="text" #inCrTK (keyup)="onKeyTaskKey(inCrTK.value)"> 
+        </label>
+      </span>
+  
+      <span class="secondInputFieldCreateTask">
+        <label for="taskProgressCrTask"><h4>Task progress</h4> 
+          <input formControlName="taskProgress" id="taskProgressCrTask" type="text" placeholder="pattern: _%" #inCrTP (keyup)="onKeyTaskProgress(inCrTP.value)"> 
+        </label>
+      </span>
+
+      <div *ngIf="taskForm.get('taskProgress').dirty && checkTaskProgress()" >
+        <font color="red">
+          *Invalid task progress input. Please try again.
+        </font>
+      </div>
+<!--
+      <span class="thirdInputFieldCreateTask">
+        <label for="taskStatusCrTask"><h4>Task status</h4> 
+          <input formControlName="taskStatus" id="taskStatusCrTask" type="text" 
+                  placeholder="pattern: D(Done) I(In progree) O(Opened) R(Reopened)" #inCrTS (keyup)="onKeyTaskStatus(inCrTS.value)"> 
+        </label>
+      </span>
+
+
+      <div *ngIf="taskForm.get('taskStatus').dirty && checkTaskStatus()" >
+        <font color="red">
+          *Invalid task status input. Please try again.
+        </font>
+      </div>
+
+       -->
+
+      <span class="fourthInputFieldCreateTask">
+        <label for="initialEstimationCrTask"><h4>Initial estimation</h4> 
+          <input formControlName="initialEstimation" id="intialEstimationCrTask" type="number" #inCrTIE (keyup)="onKeyInitialEstimation(inCrTIE.value)"> 
+        </label>
+      </span>
+
+      <span class="fifthInputFieldCreateTask">
+        <label for="remainingTimeCrTask"><h4>Remaining time</h4> 
+          <input formControlName="remainingTime" id="remainingTimeCrTask" type="number" #inCrTRT (keyup)="onKeyRemainingTime(inCrTRT.value)"> 
+        </label>
+      </span>
+
+      <span class="sixthInputFieldCreateTask">
+        <label for="hoursSpentCrTask"><h4>Hours spent</h4> 
+          <input formControlName="hoursSpent" id="hoursSpentCrTask" type="number" #inCrHS (keyup)="onKeyHoursSpent(inCrHS.value)"> 
+        </label>
+      </span>
+
+      <span class="seventhInputFieldCreateTask">
+        <label for="commentsCrTask"><h4>Comments</h4> 
+          <input formControlName="comments" id="commentsCrTask" type="text" #inCrC (keyup)="onKeyComments(inCrC.value)"> 
+        </label>
+      </span>
+    </div>
+  </div>
+</form>
+
+
+<div  [@createTaskFallthrough]="">
+    <div *ngIf="true">
+    <label  for="statusCrTask"><h4>Status</h4> 
+      <p-radioButton class="radio" name="status" value="D" label="Done" [(ngModel)]="selectedValue"></p-radioButton> 
+      <p-radioButton class="radio" name="status" value="I" label="In progress" [(ngModel)]="selectedValue"></p-radioButton>
+      <p-radioButton class="radio" name="status" value="O" label="Open" [(ngModel)]="selectedValue"></p-radioButton>
+      <p-radioButton class="radio" name="status" value="R" label="Reopened" [(ngModel)]="selectedValue"></p-radioButton>
+    </label>
+  </div>
+  </div>
+
+
+      
+  <br><br>
+  
+  <div [@buttonCreateTaskFallthrough]>
+    <div *ngIf="true">
+      <a routerLink="/newTaskLayout">
+        <button pButton type="button" icon="pi pi-angle-left" label="Back"></button>
+      </a>
+      <a>
+        <button pButton type="button" icon="pi pi-check" label="Submit" 
+                  [disabled]="!taskForm.valid" (click)="onSubmit($event)"></button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<br><br>
