@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: 'newUserLayout',
     component: NewUserLayoutComponent,
-    canActivate: [AuthGuard]
+    canActivate: [PermGuard]
   },
   {
     path: 'createUser',
@@ -80,12 +80,12 @@ const routes: Routes = [
   {
     path: 'newProjectLayout',
     component: NewProjectLayoutComponent,
-    canActivate: [AuthGuard]
+    canActivate: [PermGuard]
   },
   {
     path: 'newMeetingProjectLayout',
     component: NewMeetingProjectLayoutComponent,
-    canActivate: [AuthGuard]
+    canActivate: [PermGuard]
   },
   {
     path: 'newMeetingLayout',
